@@ -1,6 +1,13 @@
 import Image from "next/image";
 
-const TeamMember = ({ name, image, github, portfolio }) => (
+interface TeamMemberProps {
+    name: string;
+    image: string;
+    github: string;
+    portfolio: string;
+}
+
+const TeamMember = ({ name, image, github, portfolio }: TeamMemberProps) => (
     <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
         <Image src={image} alt={name} width={200} height={200} className="rounded-full mb-4" />
         <h2 className="text-xl font-bold mb-2">{name}</h2>
@@ -14,7 +21,7 @@ const TeamMember = ({ name, image, github, portfolio }) => (
 );
 
 const TeamPage = () => {
-    const teamMembers = [
+    const teamMembers: TeamMemberProps[] = [
         {
             name: "이지훈",
             image: "/지훈.jpg",
