@@ -1,6 +1,5 @@
 "use client"; // 클라이언트 컴포넌트로 설정
 
-import Image from "next/image";
 import React, { useState, useEffect, useCallback } from "react";
 
 const ImageSlider: React.FC = () => {
@@ -24,13 +23,13 @@ const ImageSlider: React.FC = () => {
     return (
         <div className="slider-container">
             <div className="slider">
-                <button onClick={prevSlide} className="prev">
+                <button onClick={prevSlide} className="nav-button prev">
                     ◀
                 </button>
                 <div className="image-wrapper">
-                    <Image src={images[currentIndex]} alt={`Slide ${currentIndex}`} className="slide-image" />
+                    <img src={images[currentIndex]} alt={`Slide ${currentIndex}`} className="slide-image" />
                 </div>
-                <button onClick={nextSlide} className="next">
+                <button onClick={nextSlide} className="nav-button next">
                     ▶
                 </button>
                 <div className="indicators">
@@ -45,45 +44,54 @@ const ImageSlider: React.FC = () => {
             </div>
             <style jsx>{`
                 .slider-container {
-                    max-width: 100%; /* 슬라이더 너비 조정 */
-                    margin: 0 auto; /* 중앙 정렬 */
-                    position: relative; /* 자식 요소의 절대 위치 설정 */
+                    width: 100%;
+                    height: 100%; /* 부모 요소의 높이에 맞춤 */
+                    margin: 0 auto;
+                    position: relative;
                 }
                 .slider {
                     position: relative;
-                    height: 400px; /* 슬라이더 높이 고정 */
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
                 }
                 .image-wrapper {
-                    width: 100%; /* 이미지 감싸는 div 너비 100% */
-                    height: 100%; /* 이미지 감싸는 div 높이 고정 */
-                    overflow: hidden; /* 넘치는 부분 숨김 */
+                    width: 100%;
+                    height: 100%;
                 }
                 .slide-image {
-                    width: 100%; /* 이미지 너비 100%로 설정 */
-                    height: 100%; /* 이미지 높이 100%로 설정 */
-                    object-fit: cover; /* 비율 유지하며 잘리도록 설정 */
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover; /* 이미지가 영역을 꽉 채우도록 설정 */
                 }
-                button {
+                .nav-button {
                     position: absolute;
                     top: 50%;
                     transform: translateY(-50%);
-                    background: rgba(255, 255, 255, 0.7);
+                    background: rgba(0, 0, 0, 0.5);
+                    color: white;
                     border: none;
                     cursor: pointer;
                     font-size: 24px;
-                    padding: 10px;
-                    z-index: 10; /* 버튼을 다른 요소 위에 표시 */
-                    opacity: 1; /* 버튼이 보이도록 설정 */
+                    padding: 10px 15px;
+                    z-index: 10;
+                    transition: opacity 0.3s ease;
+                }
+                .nav-button:hover {
+                    opacity: 1;
                 }
                 .prev {
-                    left: -60px; /* 왼쪽 버튼을 이미지 바깥으로 이동 */
+                    left: 10px;
                 }
                 .next {
-                    right: -60px; /* 오른쪽 버튼을 이미지 바깥으로 이동 */
+                    right: 10px;
                 }
                 .indicators {
+                    position: absolute;
+                    bottom: 10px;
+                    left: 0;
+                    right: 0;
                     text-align: center;
-                    margin-top: 10px;
                 }
                 .indicator {
                     display: inline-block;
@@ -95,7 +103,7 @@ const ImageSlider: React.FC = () => {
                     cursor: pointer;
                 }
                 .indicator.active {
-                    background: #717171; /* 활성 상태 색상 */
+                    background: #717171;
                 }
             `}</style>
         </div>

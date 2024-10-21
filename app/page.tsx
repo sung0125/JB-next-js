@@ -14,7 +14,13 @@ export default function Home() {
             </h2>
             <div className="flex flex-row items-center gap-10 w-full max-w-4xl p-4 border rounded-lg shadow-md">
                 <div className="flex-shrink-0 w-1/3 pr-8 ml-20">
-                    <Image src="/2.jpg" alt="My Photo" className="w-full h-auto rounded-full" />
+                    <Image
+                        src="/2.jpg"
+                        alt="My Photo"
+                        width={500}
+                        height={500}
+                        className="w-full h-auto rounded-full"
+                    />
                 </div>
                 <div className="flex flex-col ml-20">
                     <span className="text-lg font-semibold">이름: 전성배</span>
